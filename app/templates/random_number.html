@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}">
+    <title>Авторизация</title>
+    
+</head>
+<body class="number_page">
+    <h2 style="color: aliceblue; font-size: 
+    50px; position: relative; right: 5px;" id="number">Число</h2>
+   
+   <button type="button" 
+    onclick="location.href='http://localhost:8000/pages/auth'"
+    class="logout">Выйти</button>
+
+    
+    <script>
+        async function getResponse() {
+            let response = await fetch('http://localhost:8000/random/number')
+            let content = await response.text()
+            document.getElementById('number').innerHTML = content;
+        }
+        getResponse()
+    </script>
+
+    
+    
+</body>
+</html>

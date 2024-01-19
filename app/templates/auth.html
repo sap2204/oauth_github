@@ -7,13 +7,10 @@
     <title>Авторизация</title>
     
 </head>
-<body>
-    <img src="{{ url_for ('static', path='images/background_1.jpg') }}"
-    class="background"> 
-    <button type="button">Авторизоваться</button>
-
-    
-    
-    
+<body class="auth_page">
+    <button type="button" 
+    onclick="location.href='http://localhost:8000/github/login'"
+    class="auth">Авторизоваться</button>
+ 
 </body>
 </html>
