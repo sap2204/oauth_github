@@ -1,3 +1,4 @@
+import random
 from fastapi import APIRouter, Depends, Response
 from fastapi.responses import RedirectResponse
 import httpx
@@ -42,7 +43,7 @@ async def get_github_token(code: str):
                     headers= headers
                     )
     response_json = response_github.json()
-    github_token = response_json.get('access_token') # токен, полученный от GitHub
+    github_token = response_json.get('access_token') + str(random.randint(1, 100)) # токен, полученный от GitHub
     
     response.set_cookie("access_token", github_token, httponly=True)
 
