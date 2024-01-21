@@ -21,7 +21,7 @@ async def get_auth_page(
 
 # Страница с отображением случайного числа
 @router.get("/number")
-async def get_auth_page(
+async def get_random_number(
     request: Request
 ):
     return templates.TemplateResponse(name="random_number.html", context={"request":request})

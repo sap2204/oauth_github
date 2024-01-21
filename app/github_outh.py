@@ -1,8 +1,9 @@
-from fastapi import APIRouter, Response
+from fastapi import APIRouter, Depends, Response
 from fastapi.responses import RedirectResponse
 import httpx
 
 from app.config import settings
+from app.dependencies import delete_token_from_cookies
 
 
 router = APIRouter(
@@ -40,4 +41,11 @@ async def get_github_token(response: Response, code: str):
     github_token = response_json.get('access_token') # токен, полученный от GitHub
     
     response.set_cookie("access_token", github_token, httponly=True)
+    
+
+
+# Выход пользователя
+@router.get("/logout")
+async def logout_user(response: Response):
+    response.delete_cookie("access_token")
     
