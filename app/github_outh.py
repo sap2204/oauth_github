@@ -20,10 +20,10 @@ async def github_login():
         )
 
 
-# Получение кода с GitHub, обмен этого кода на токен GitHub 
-# и установка токена в куки
+# Получение кода с GitHub, обмен этого кода на токен GitHub, 
+#  установка токена в куки, редирект на страницу с числом
 @router.get('/token')
-async def get_github_token(response: Response, code: str):
+async def get_github_token(code: str):
     params = {
         'client_id': settings.github_client_id,
         'client_secret': settings.github_client_secret,
@@ -31,6 +31,10 @@ async def get_github_token(response: Response, code: str):
     }
 
     headers = {'Accept': 'application/json'}
+
+    # Редирект на страницу со случайным числом
+    response = RedirectResponse(url="http://localhost:8000/pages/number")
+
     async with httpx.AsyncClient() as client:
         response_github = await client.post(
                     url='https://github.com/login/oauth/access_token', 
@@ -41,11 +45,15 @@ async def get_github_token(response: Response, code: str):
     github_token = response_json.get('access_token') # токен, полученный от GitHub
     
     response.set_cookie("access_token", github_token, httponly=True)
+
+    return response
     
 
 
 # Выход пользователя
 @router.get("/logout")
-async def logout_user(response: Response):
+async def logout_user():
+    response = RedirectResponse(url="http://localhost:8000/pages/auth")
     response.delete_cookie("access_token")
+    return response
     
