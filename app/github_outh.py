@@ -33,7 +33,7 @@ async def get_github_token(code: str):
     headers = {'Accept': 'application/json'}
 
     # Редирект на страницу со случайным числом
-    response = RedirectResponse(url="http://augithub.my-proj.ru/pages/number")
+    response = RedirectResponse(url="http://zufsmave.beget.tech/pages/number")
 
     async with httpx.AsyncClient() as client:
         response_github = await client.post(
