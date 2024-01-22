@@ -3,17 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}"> -->
     <title>Случайное число</title>
     
 </head>
-<body class="number_page">
+<body class="number_page" style="
+                            background: #262626;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            height: 100vh;">
+
     <h2 style="color: aliceblue; font-size: 
     50px; position: relative; right: 5px;" id="number">5 сек ;-)</h2>
    
    <button type="button" 
-    onclick="location.href='http://localhost:8000/github/logout'"
-    class="logout">Выйти</button>
+    onclick="location.href='http://augithub.my-proj.ru/github/logout'"
+    class="logout" style="
+                        align-self: flex-end;
+                        padding: 20px 50px;
+                        outline: none;
+                        border: none;
+                        border-radius: 25px;
+                        background-color:  #900020;
+                        cursor: pointer;
+                        color: #fff;
+                        font-weight: 600;
+                        font-size: 20px;
+                        letter-spacing: 2px;
+                        box-shadow: 0px 5px 10px black;
+                        position: relative;
+                        right: 140px;
+                        top: -70px;">Выйти</button>
 
     
     <script>

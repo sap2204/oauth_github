@@ -3,14 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}"> -->
     <title>Авторизация</title>
     
 </head>
-<body class="auth_page">
+<body class="auth_page" style="
+                        background: #262626;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        height: 100vh;">
+
     <button type="button" 
-    onclick="location.href='http://localhost:8000/github/login'"
-    class="auth">Авторизоваться</button>
+    onclick="location.href='http://augithub.my-proj.ru/github/login'"
+    class="auth" style="
+                padding: 20px 50px;
+                outline: none;
+                border: none;
+                border-radius: 25px;
+                background-color: rgb(0,117, 229);
+                cursor: pointer;
+                color: #fff;
+                font-weight: 600;
+                font-size: 20px;
+                letter-spacing: 2px;
+                box-shadow: 0px 5px 10px black;">Авторизоваться</button>
  
 </body>
 </html>
