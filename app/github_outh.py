@@ -33,7 +33,7 @@ async def get_github_token(code: str):
     headers = {'Accept': 'application/json'}
 
     # Редирект на страницу со случайным числом
-    response = RedirectResponse(url="http://zufsmave.beget.tech/pages/number")
+    response = RedirectResponse(url="http:test.my-proj.ru/pages/number")
 
     async with httpx.AsyncClient() as client:
         response_github = await client.post(
@@ -53,7 +53,7 @@ async def get_github_token(code: str):
 # Выход пользователя
 @router.get("/logout")
 async def logout_user():
-    response = RedirectResponse(url="http://augithub.my-proj.ru/pages/auth")
+    response = RedirectResponse(url="http://test.my-proj.ru/pages/auth")
     response.delete_cookie("access_token")
     return response
     
