@@ -14,9 +14,7 @@ def get_token_from_cookies(request:Request):
 
 
 
-# Удаление токена из кукиз
-def delete_token_from_cookies(response: Response):
-    response.delete_cookie("access_token")
+
 
 
 

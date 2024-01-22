@@ -4,7 +4,6 @@ from fastapi.responses import RedirectResponse
 import httpx
 
 from app.config import settings
-from app.dependencies import delete_token_from_cookies
 
 
 router = APIRouter(
