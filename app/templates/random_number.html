@@ -15,7 +15,7 @@
                             height: 100vh;">
 
     <h2 style="color: aliceblue; font-size: 
-    50px; position: relative; right: 5px;" id="number">5 сек ;-)</h2>
+    50px; position: relative; right: 5px;" id="number">_</h2>
    
    <button type="button" 
     onclick="location.href='http://localhost:8000/github/logout'"
@@ -38,7 +38,7 @@
 
     
     <script>
-        let ws = new WebSocket('ws://localhost:8000/random/ws');
+        let ws = new WebSocket('ws://localhost:8000/random/ws/${client_id}');
         ws.onmessage = (evenet) => {
         document.getElementById('number').innerHTML = event.data
         }

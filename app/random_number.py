@@ -13,13 +13,19 @@ router = APIRouter(
 
 
 # Генерация случайного числа каждые 5 секунд по веб-сокету
-@router.websocket("/ws")
-async def get_random_number(websocket: WebSocket, client_id: int):
+@router.websocket("/ws/{client_id}")
+async def websocket_endpoint(websocket: WebSocket, client_id: int):
     await manager.connect(websocket)
-    while True:
-        random_number = random.randint(1, 1_000)
-        await manager.broadcast(random_number)
-        asyncio.sleep(5)
+    print("CONNECTTED", client_id)
+    try:
+        while True:
+            random_number = random.randint(1, 1_000)
+            await manager.broadcast(str(random_number))
+            await asyncio.sleep(1)
+    except WebSocketDisconnect as ex:
+        manager.disconnect(websocket)
+        await manager.broadcast(f"Client #{client_id} left the chat")
+        print("ОШИПКА", ex)
     
     
     
