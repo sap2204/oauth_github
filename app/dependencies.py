@@ -1,8 +1,6 @@
 import random
-from fastapi import  Request, HTTPException, Response, status
-import httpx
+from fastapi import  Request, HTTPException, status
 
-from app.config import settings
 
 
 # Получение токена из кукиз
@@ -11,11 +9,5 @@ def get_token_from_cookies(request:Request):
     if not token:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED)
     return token
-
-
-
-
-
-
 
 

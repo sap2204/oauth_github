@@ -1,8 +1,9 @@
-from threading import Timer
+import asyncio
 import random
-from fastapi import APIRouter, Depends, Request
+from fastapi import APIRouter,  WebSocket, WebSocketDisconnect
 
-from app.dependencies import  get_token_from_cookies
+
+from app.ws_help import manager
 
 
 router = APIRouter(
@@ -11,12 +12,15 @@ router = APIRouter(
 )
 
 
-# Генерация случайного числа каждые 5 секунд
-@router.get("/number",
-            dependencies=[Depends(get_token_from_cookies)])
-def get_random_number():
-    number = random.randint(1, 1_000)
-    return number
+# Генерация случайного числа каждые 5 секунд по веб-сокету
+@router.websocket("/ws")
+async def get_random_number(websocket: WebSocket, client_id: int):
+    await manager.connect(websocket)
+    while True:
+        random_number = random.randint(1, 1_000)
+        await manager.broadcast(random_number)
+        asyncio.sleep(5)
+    
     
     
 

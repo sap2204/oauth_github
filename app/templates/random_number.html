@@ -18,7 +18,7 @@
     50px; position: relative; right: 5px;" id="number">5 сек ;-)</h2>
    
    <button type="button" 
-    onclick="location.href='http://test.my-proj.ru:81/github/logout'"
+    onclick="location.href='http://localhost:8000/github/logout'"
     class="logout" style="
                         align-self: flex-end;
                         padding: 20px 50px;
@@ -38,12 +38,10 @@
 
     
     <script>
-        async function getResponse() {
-            let response = await fetch('http://test.my-proj.ru:81/random/number')
-            let content = await response.text()
-            document.getElementById('number').innerHTML = content;
+        let ws = new WebSocket('ws://localhost:8000/random/ws');
+        ws.onmessage = (evenet) => {
+        document.getElementById('number').innerHTML = event.data
         }
-        setInterval(getResponse, 5000)
     </script>
 
     
