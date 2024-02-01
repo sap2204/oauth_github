@@ -38,7 +38,7 @@
 
     
     <script>
-        let ws = new WebSocket('ws://localhost:8000/random/ws/${client_id}');
+        let ws = new WebSocket('ws://localhost:8000/random/ws/1');
         ws.onmessage = (evenet) => {
         document.getElementById('number').innerHTML = event.data
         }

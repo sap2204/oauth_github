@@ -21,11 +21,10 @@ async def websocket_endpoint(websocket: WebSocket, client_id: int):
         while True:
             random_number = random.randint(1, 1_000)
             await manager.broadcast(str(random_number))
-            await asyncio.sleep(1)
+            await asyncio.sleep(5)
     except WebSocketDisconnect as ex:
         manager.disconnect(websocket)
-        await manager.broadcast(f"Client #{client_id} left the chat")
-        print("ОШИПКА", ex)
+        print("ОШИБКА", ex)
     
     
     
