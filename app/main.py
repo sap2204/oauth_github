@@ -1,14 +1,20 @@
+from contextlib import asynccontextmanager
 from fastapi import FastAPI
-from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
-import httpx
 
-from app.config import settings
 from app.github_outh import router as router_github_auth
 from app.random_number import router as router_random_number
 from app.pages.router import router as router_pages
+from app.ws_help import number_generator
 
-app = FastAPI()
+
+@asynccontextmanager
+async def lifespan(router: FastAPI):
+    number_generator.start_listening()
+    yield
+
+    
+app = FastAPI(lifespan=lifespan,)
 
 
 app.include_router(router_github_auth)

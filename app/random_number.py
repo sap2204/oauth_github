@@ -1,29 +1,39 @@
 import asyncio
-import random
-from fastapi import APIRouter,  WebSocket, WebSocketDisconnect
+from contextlib import asynccontextmanager
+from fastapi import APIRouter, FastAPI,  WebSocket, WebSocketDisconnect
 
 
-from app.ws_help import manager
+from app.ws_help import number_generator, manager
+
+
+#@asynccontextmanager
+#async def lifespan(router: FastAPI):
+    #number_generator.start_listening()
+    #yield
 
 
 router = APIRouter(
     prefix="/random",
-    tags=["Генерация случайного числа"]
+    tags=["Генерация случайного числа"],
+    #lifespan=lifespan,
 )
 
 
 # Генерация случайного числа каждые 5 секунд по веб-сокету
 @router.websocket("/ws/{client_id}")
 async def websocket_endpoint(websocket: WebSocket, client_id: int):
+    print(f"{client_id=}")
     await manager.connect(websocket)
-    print("CONNECTTED", client_id)
+   
+    q: asyncio.Queue = asyncio.Queue()
+    await number_generator.subscribe(q=q)
     try:
         while True:
-            random_number = random.randint(1, 1_000)
-            await manager.broadcast(str(random_number))
-            await asyncio.sleep(1)
-    except WebSocketDisconnect as ex:
+            data = await q.get()
+            await websocket.send_text(data)
+    except WebSocketDisconnect:
         manager.disconnect(websocket)
+
         
     
     
