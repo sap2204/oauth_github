@@ -44,7 +44,7 @@
         
         let ws = new WebSocket(url);
 
-        ws.onmessage = (evenet) => {
+        ws.onmessage = (event) => {
         document.getElementById('number').innerHTML = event.data
         }
         
