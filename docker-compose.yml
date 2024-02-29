@@ -7,7 +7,7 @@ services:
       dockerfile: "Dockerfile.nginx"
     container_name: auth_github_nginx
     ports:
-      - 81:80
+      - 80:80
       #- 443:443
     links:
       - auth_github

@@ -6,12 +6,6 @@ from fastapi import APIRouter, FastAPI,  WebSocket, WebSocketDisconnect
 from app.ws_help import number_generator, manager
 
 
-#@asynccontextmanager
-#async def lifespan(router: FastAPI):
-    #number_generator.start_listening()
-    #yield
-
-
 router = APIRouter(
     prefix="/random",
     tags=["Генерация случайного числа"],

@@ -18,7 +18,7 @@
     50px; position: relative; right: 5px;" id="number">_</h2>
    
    <button type="button" 
-    onclick="location.href='http://test.my-proj.ru:81/github/logout'"
+    onclick="location.href='http://test.my-proj.ru/github/logout'"
     class="logout" style="
                         align-self: flex-end;
                         padding: 20px 50px;
@@ -40,7 +40,7 @@
     <script>
         let client_id = Date.now()
         console.log(client_id)
-        let url = "ws://test.my-proj.ru:81/random/ws/" + client_id
+        let url = "ws://test.my-proj.ru/random/ws/" + client_id
         
         let ws = new WebSocket(url);
 
